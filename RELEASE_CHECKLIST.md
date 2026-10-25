@@ -19,8 +19,7 @@ Before publishing or announcing this project:
   - Owner: `Ayushxsingh100`
   - Repository name: `kernelcontract`
   - Workflow name: `publish-to-pypi.yml`
-  - Environment name: `pypi`
-- [ ] Manual GitHub Configuration: Create GitHub environment `pypi` (Settings -> Environments -> New environment) and enable deployment protection rules (required reviewers for manual release approval).
+- [x] Configure GitHub environment `pypi` via GitHub REST API: required reviewer `Ayushxsingh100` (ID: 192797874), self-review permitted (`prevent_self_review: false`), administrator bypass disabled (`can_admins_bypass: false`), and deployment restricted to tag pattern `v*`.
 - [x] Publish candidate `0.1.0a2` as a clearly marked GitHub pre-release (https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2).
 - [ ] Prepare candidate `0.1.0a3` for PyPI publication (do not create or push tag `v0.1.0a3` until manual setup is complete).
 - [ ] Verify `pip install kernelcontract` in a clean environment after PyPI publication.

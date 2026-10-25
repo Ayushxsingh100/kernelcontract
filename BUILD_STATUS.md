@@ -41,7 +41,6 @@
 - Tag `v0.1.0a2` is published on GitHub as an alpha pre-release.
 - Candidate `0.1.0a3` is under development; tag `v0.1.0a3` will only be created and pushed after release candidate verification and manual PyPI configuration.
 - Manual PyPI Trusted Publisher configuration: Maintainer must configure a Pending Publisher in PyPI account settings pointing to repo `Ayushxsingh100/kernelcontract`, workflow `publish-to-pypi.yml`, and environment `pypi`.
-- GitHub Environment: Maintainer must create environment `pypi` in GitHub repository settings with deployment protection rules (required reviewers).
 - The package has **not** been published to PyPI or TestPyPI.
 - The name remains provisional; registry availability is not trademark or legal clearance.
 - No external maintainers or Jupyter users have tested it yet.
