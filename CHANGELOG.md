@@ -1,6 +1,13 @@
 # Changelog
 
-## 0.1.0a2 — unreleased
+## 0.1.0a3 — unreleased
+
+- Prepared PyPI Trusted Publishing GitHub Actions workflow (`.github/workflows/publish-to-pypi.yml`) using OIDC authentication, release triggers, and environment protection.
+- Resolved repository URL placeholders in documentation and established verified Git-based installation instructions.
+- Added package distribution build and validation with `python -m build` and `python -m twine check --strict`.
+- Documented required PyPI Pending Publisher and GitHub Environment manual configurations.
+
+## 0.1.0a2 — 2026-10-25
 
 - Hardened cross-platform executable resolution: normalized path separators and added explicit Windows `PATHEXT` (`.COM`, `.EXE`, `.BAT`, `.CMD`) extension checking for kernelspec argv commands, ensuring reliable discovery on Windows across Python 3.10 through 3.13.
 - Improved symlink tolerance in test assertions to ensure canonical interpreter resolution passes reliably on Linux/Ubuntu distributions.

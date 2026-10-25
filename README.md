@@ -4,7 +4,7 @@
 
 KernelContract inspects registered Jupyter kernelspecs, checks whether their configured executables resolve, probes Python kernel environments, and compares notebook kernel metadata with the kernels available to the current Jupyter CLI. It reports likely configuration mismatches, missing interpreters, and safe next steps without modifying the machine.
 
-> **Alpha Pre-release (0.1.0a2).** KernelContract is an early-stage diagnostic tool published as an alpha pre-release on GitHub ([v0.1.0a2](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2)). It is not yet a stable 1.0 release, and has **not** been published to PyPI. The project name is provisional and has not been trademark- or registry-cleared.
+> **Alpha Software — Candidate 0.1.0a3 (Latest tagged pre-release: [v0.1.0a2](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2)).** KernelContract is an early-stage diagnostic tool under active development. The latest published GitHub pre-release is `v0.1.0a2`, and the current default branch is preparing candidate `0.1.0a3` for PyPI Trusted Publishing. It has **not** yet been published to PyPI. The project name is provisional and has not been trademark- or registry-cleared.
 
 ---
 
@@ -133,7 +133,7 @@ python -m pytest -q
 
 ## Status
 
-* **Version:** `0.1.0a2` (alpha pre-release)
+* **Version:** `0.1.0a3` (alpha candidate; latest tagged pre-release: [`v0.1.0a2`](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2))
 * **Repository:** [https://github.com/Ayushxsingh100/kernelcontract](https://github.com/Ayushxsingh100/kernelcontract)
 * **Pre-release Notes:** [v0.1.0a2 Release](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2)
 * **License:** [MIT](LICENSE)
