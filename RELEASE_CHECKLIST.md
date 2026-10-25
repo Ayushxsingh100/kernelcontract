@@ -5,7 +5,7 @@ Before publishing or announcing this project:
 - [x] Check PyPI project endpoint for normalized name `kernelcontract`: Query to `https://pypi.org/pypi/kernelcontract/json` returned HTTP 404 Not Found on 2026-10-25. Note: A 404 status indicates no current published package under this name, but does not guarantee registration permission or trademark clearance.
 - [ ] Review name and trademark conflicts; do not imply the working name is legally cleared.
 - [x] Create a public GitHub repository at https://github.com/Ayushxsingh100/kernelcontract.
-- [x] Run automated test suite on Windows and Linux CI (52 tests passed in Python 3.10, 3.11, 3.12, 3.13 across Ubuntu and Windows).
+- [x] Run automated test suite on Windows and Linux CI (59 tests passed in Python 3.10, 3.11, 3.12, 3.13 across Ubuntu and Windows).
 - [x] Test stale kernelspecs, malformed kernelspecs, and notebooks with missing/malformed kernel metadata.
 - [ ] Validate widget warnings against authoritative docs and real supported JupyterLab/ipywidgets version combinations in production setups.
 - [x] Review subprocess behavior and ensure non-control kernel executables remain opt-in with bounded timeouts and safe args.
@@ -13,6 +13,6 @@ Before publishing or announcing this project:
 - [x] Review the MIT license choice and package metadata.
 - [x] Build a clean wheel, then install and test the wheel in a clean virtual environment.
 - [ ] Configure PyPI Trusted Publishing only after the repository and release workflow are ready.
-- [ ] Publish candidate `0.1.0a2` as a clearly marked pre-release first; do not claim stable status prematurely.
+- [x] Publish candidate `0.1.0a2` as a clearly marked GitHub pre-release (https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2).
 - [ ] Verify `pip install kernelcontract` in a clean environment after publication.
 - [x] Add documentation and changelog notes explaining known limitations and the opt-in `--probe-python` behavior.

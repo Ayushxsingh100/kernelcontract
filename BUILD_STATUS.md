@@ -1,4 +1,4 @@
-# Build status — 0.1.0a2 alpha (candidate)
+# Build status — 0.1.0a2 alpha (pre-release)
 
 ## Implemented
 
@@ -10,6 +10,7 @@
 - Read-only validation that each kernelspec has a resolvable executable.
 - Hardened cross-platform executable resolution: normalized path separators and explicit Windows `PATHEXT` (`.COM`, `.EXE`, `.BAT`, `.CMD`) checking across Python 3.10–3.13.
 - Symlink tolerance for canonical interpreter path resolution on Linux/Ubuntu.
+- Structured validation of JSON root structures and `kernelspecs` objects in discovery.
 - Current/control interpreter probe and optional explicit `--server-python` probe.
 - Safe default for probing: separate Python kernel executables are not executed without `--probe-python`.
 - Python `ipykernel` check when a kernel is probed.
@@ -21,20 +22,21 @@
 
 ## Validation completed in the build and CI environments
 
-- `python -m unittest discover -s tests -v`: **52 tests passed** (including discovery, diagnostics, edge cases, malformed JSON, and CLI suites).
-- `python -m pytest -q`: **52 passed**.
+- `python -m unittest discover -s tests -v`: **59 tests passed** (including discovery, diagnostics, edge cases, malformed JSON, and CLI suites).
+- `python -m pytest -q`: **59 passed**.
 - `python -m compileall -q src tests`: clean syntax compilation.
-- `kernelcontract --version`: verified.
+- `kernelcontract --version`: verified (`0.1.0a2`).
 - `kernelcontract doctor` & `kernelcontract notebook <sample .ipynb> --json`: verified against fixture notebooks and clean test reports.
 - Wheel built successfully (`pip wheel . --no-deps -w dist`) and installed into clean virtual environments.
 - Installed CLI `kernelcontract --help`, `doctor`, and `notebook` verified inside isolated virtual environments.
 - Windows execution verified: PATHEXT resolution without `.exe`, quoted executable paths, console output encoding safety, and subprocess decode safety.
 - Public GitHub repository live at `https://github.com/Ayushxsingh100/kernelcontract`.
 - Remote GitHub Actions CI verified: all 8 matrix jobs passed across Ubuntu and Windows on Python 3.10, 3.11, 3.12, and 3.13.
+- Git installation verified: `pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a2"`.
 
 ## Not yet done
 
-- Tag `v0.1.0a2` has **not** yet been created; `v0.1.0a1` remains the existing alpha tag.
+- Tag `v0.1.0a2` is published on GitHub as an alpha pre-release; a stable 1.0 release is not yet planned.
 - The package has **not** been published to PyPI or TestPyPI.
 - The name remains provisional; registry availability is not trademark or legal clearance.
 - No external maintainers or Jupyter users have tested it yet.

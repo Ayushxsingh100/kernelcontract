@@ -1,115 +1,140 @@
 # KernelContract
 
-**Read-only diagnostics for Jupyter kernels and Python environments.**
+**Local-first, read-only diagnostics for Jupyter kernels, kernelspecs, and notebook environments.**
 
-KernelContract inspects registered Jupyter kernelspecs, checks whether their configured executables resolve, probes Python kernel environments, and compares notebook kernel metadata with the kernels available to the current Jupyter CLI. It reports likely issues and safe next steps without modifying the machine.
+KernelContract inspects registered Jupyter kernelspecs, checks whether their configured executables resolve, probes Python kernel environments, and compares notebook kernel metadata with the kernels available to the current Jupyter CLI. It reports likely configuration mismatches, missing interpreters, and safe next steps without modifying the machine.
 
-> **Alpha software (0.1.0a2 pre-release candidate).** This is an initial, deliberately narrow implementation. It does not diagnose every JupyterLab extension, certify exact widget-version compatibility, infer the interpreter of an already-running Jupyter server, or guarantee that a notebook will execute successfully. The project name is provisional and has not been trademark- or registry-cleared.
+> **Alpha Pre-release (0.1.0a2).** KernelContract is an early-stage diagnostic tool published as an alpha pre-release on GitHub ([v0.1.0a2](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2)). It is not yet a stable 1.0 release, and has **not** been published to PyPI. The project name is provisional and has not been trademark- or registry-cleared.
+
+---
 
 ## Quick start
 
-KernelContract requires Python 3.10 or newer. **The package has not been published to PyPI yet.** To try this checkout locally:
+### Prerequisites
+
+* **Python 3.10 or newer.**
+* **Jupyter CLI on PATH:** KernelContract has zero external runtime dependencies (it uses the Python standard library only), but it requires that the `jupyter` command is available on your `PATH` (such as via `jupyter-core`) to discover registered kernels via `jupyter kernelspec list --json`.
+
+### End-user installation (pre-release)
+
+While PyPI publication remains pending, install the tagged alpha pre-release directly from GitHub using `pip`:
 
 ```bash
-python -m pip install -e .
+python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a2"
+```
+
+Or install the latest development snapshot from the default `master` branch:
+
+```bash
+python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git"
+```
+
+> **Note on PyPI:** The command `pip install kernelcontract` is reserved for future distribution once the package is officially published to the Python Package Index.
+
+---
+
+## Core usage
+
+### 1. Diagnose registered Jupyter kernels
+
+Run the `doctor` command to inspect all discovered kernelspecs, verify their executables, and check the active Python environment:
+
+```bash
 kernelcontract doctor
 ```
 
-After a release is published, the intended end-user install command will be:
+### 2. Validate notebook kernel metadata
+
+Inspect whether a `.ipynb` file's declared kernel exists and matches currently registered kernelspecs:
 
 ```bash
-python -m pip install kernelcontract
-kernelcontract doctor
+kernelcontract notebook path/to/notebook.ipynb
 ```
 
-KernelContract does not require a third-party Python package at runtime, but it expects the environment to expose the `jupyter` command and the kernels you want to inspect.
+If the notebook requests an unavailable kernel or if the kernel's stored display name has drifted from disk, KernelContract reports the issue with actionable next steps.
 
-To inspect a notebook's declared kernel:
+### 3. Machine-readable JSON output
 
-```bash
-kernelcontract notebook notebooks/analysis.ipynb
-```
-
-For structured output suitable for scripts or CI:
+Produce structured, versioned JSON suitable for automated tooling, pre-commit hooks, or CI pipelines:
 
 ```bash
 kernelcontract doctor --json
-kernelcontract notebook notebooks/analysis.ipynb --json
+kernelcontract notebook path/to/notebook.ipynb --json
 ```
 
-To fail CI when the report contains either warnings or failures:
+The JSON schema output includes `schema_version`, `status` (`PASS`, `WARN`, `FAIL`), check details, and specific remediation suggestions.
+
+### 4. Strict CI mode
+
+By default, `FAIL` makes the command exit with status 1, while warnings exit with status 0. To fail CI on warnings as well as failures, pass `--strict`:
 
 ```bash
 kernelcontract doctor --strict
 ```
 
-By default, a `FAIL` makes the command exit with status 1. Warnings do not fail the command unless `--strict` is used.
-
-To probe every registered Python kernel, including interpreters outside the current environment:
+### 5. Probing external Python kernels (opt-in)
 
 ```bash
 kernelcontract doctor --probe-python
 ```
 
-Use `--probe-python` only when you trust the registered kernelspecs. A kernelspec's executable can be any program, so probing it can execute code from that environment. By default, KernelContract probes the current control interpreter and only probes other kernels when their resolved executable is the same interpreter.
+* **Security Note:** By default, KernelContract only executes package inspection on the current control interpreter and kernels that resolve to the exact same executable. Interpreters outside the current environment are **not** executed unless you pass `--probe-python`. Use `--probe-python` only with kernelspecs and environments you trust.
+
+---
 
 ## What it checks
 
-- Whether the Jupyter CLI can enumerate kernelspecs using `jupyter kernelspec list --json`.
-- Whether each registered kernelspec has a resolvable `argv[0]` executable.
-- Whether the current Python (and, when explicitly enabled, other Python kernels) can start and whether `ipykernel` is installed in that interpreter.
-- Whether a probed kernel's Python prefix differs from the control interpreter.
-- A narrow widget companion check when the control environment contains JupyterLab and a kernel contains `ipywidgets`.
-- Whether a `.ipynb` file declares a kernel name that is currently registered.
-- Whether the notebook's stored display name differs from the registered kernel display name.
+* **CLI Discovery:** Whether the Jupyter CLI can enumerate kernelspecs using `jupyter kernelspec list --json`.
+* **JSON Structure Safety:** Whether kernelspec outputs have valid root structures and dictionary objects.
+* **Executable Resolution:** Whether each registered kernelspec has a resolvable `argv[0]` executable (including Windows `PATHEXT` resolution for `.exe`, `.cmd`, `.bat`, quoted paths with spaces, and environment variable expansion).
+* **Environment Integrity:** Whether the control Python (and, when opted in, external Python kernels) can start and whether `ipykernel` is installed in that interpreter.
+* **Environment Drift:** Whether a probed kernel's Python prefix differs from the control interpreter.
+* **Widget Companion Check:** A narrow check for presence of `jupyterlab_widgets` when the control environment contains JupyterLab and a probed kernel contains `ipywidgets`.
+* **Notebook Metadata Check:** Whether a notebook file declares a kernel name that is currently registered and whether the recorded display name matches the kernelspec on disk.
 
-## Server and kernel environments
+---
 
-KernelContract cannot reliably infer which Python interpreter belongs to an already-running Jupyter server across all launchers, operating systems, containers, and remote setups. By default, it uses the Python that launches KernelContract as its **control environment**; this is not claimed to be the server interpreter.
+## Server vs. kernel environments
 
-If you know the server interpreter, pass it explicitly:
+KernelContract cannot reliably infer which Python interpreter belongs to an already-running Jupyter server across diverse setups (e.g. systemd services, Docker containers, remote SSH tunnels, JupyterHub). By default, it uses the Python interpreter launching KernelContract as its **control environment**.
+
+If you know the specific Python interpreter running the Jupyter server, pass it explicitly:
 
 ```bash
 kernelcontract doctor --server-python /absolute/path/to/server/python
 ```
 
-The `--server-python` option changes which interpreter is used for the control-side package checks and environment comparison. If the server and kernels intentionally live in separate environments, a drift warning is not automatically a defect.
+---
 
-## Safety and privacy
+## Safety and privacy guarantees
 
-- No telemetry or network calls are made by KernelContract itself.
-- No package installation, upgrade, removal, or environment rewrite is performed.
-- Interpreter probes are local subprocesses with timeouts.
-- Kernel commands are never executed through a shell. For Python kernels, the executable is invoked with a fixed probe that checks selected package metadata. The current control interpreter is probed by default; other Python kernel interpreters require `--probe-python` unless they resolve to the same executable.
-- The JSON report includes filesystem paths and package versions. Review output before sharing it publicly.
+* **Strictly Read-Only:** KernelContract modifies no packages, rewrites no files, and changes no configuration.
+* **No Telemetry:** Zero analytics, telemetry, or network calls are made by KernelContract.
+* **Bounded Subprocesses:** Subprocess probes use strict execution timeouts to avoid hanging indefinitely.
+* **No Shell Execution:** Commands are executed directly with argument lists (`shell=False`).
 
-Note: the Jupyter command may load its installed extensions/configuration as part of normal Jupyter startup. Run the tool only in environments you trust.
+---
 
 ## Development
 
+To contribute or run the test suite locally from source:
+
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Ayushxsingh100/kernelcontract.git
 cd kernelcontract
 python -m venv .venv
-# Activate .venv using the command for your operating system.
+# Activate .venv (Windows: .venv\Scripts\activate | Unix: source .venv/bin/activate)
 python -m pip install -e ".[test]"
-python -m pytest
-python -m kernelcontract doctor
+python -m unittest discover -s tests -v
+python -m pytest -q
 ```
 
-The source uses a `src/` layout and the CLI is defined in `pyproject.toml`.
-
-## Limits and roadmap
-
-This release is intentionally a diagnostic baseline, not an authoritative compatibility database. Planned next steps should be driven by reproduced failures and user feedback:
-
-1. Test the checks on Windows, macOS, Linux, and common conda/venv setups.
-2. Add fixture-based integration tests for real kernelspec layouts.
-3. Validate the widget companion warning against supported JupyterLab/ipywidgets combinations.
-4. Consider a GitHub Action only after the JSON schema and exit-code behavior stabilize.
+---
 
 ## Status
 
-- Version: `0.1.0a2` (pre-release candidate)
-- License: MIT
-- Stability: Alpha
+* **Version:** `0.1.0a2` (alpha pre-release)
+* **Repository:** [https://github.com/Ayushxsingh100/kernelcontract](https://github.com/Ayushxsingh100/kernelcontract)
+* **Pre-release Notes:** [v0.1.0a2 Release](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2)
+* **License:** [MIT](LICENSE)
+* **Stability:** Alpha
