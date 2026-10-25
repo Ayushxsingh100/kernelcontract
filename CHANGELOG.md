@@ -1,6 +1,12 @@
 # Changelog
 
-## 0.1.0a1 — unreleased
+## 0.1.0a2 — unreleased
+
+- Hardened cross-platform executable resolution: normalized path separators and added explicit Windows `PATHEXT` (`.COM`, `.EXE`, `.BAT`, `.CMD`) extension checking for kernelspec argv commands, ensuring reliable discovery on Windows across Python 3.10 through 3.13.
+- Improved symlink tolerance in test assertions to ensure canonical interpreter resolution passes reliably on Linux/Ubuntu distributions.
+- Modernized GitHub Actions CI workflows to `actions/checkout@v7` and `actions/setup-python@v7` targeting native Node.js 24 runner support.
+
+## 0.1.0a1 — 2026-10-25
 
 - Initial read-only Jupyter kernelspec and Python interpreter diagnostics.
 - JSON output and strict exit mode for CI integration.

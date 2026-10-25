@@ -1,4 +1,4 @@
-# Build status — 0.1.0a1 alpha
+# Build status — 0.1.0a2 alpha (candidate)
 
 ## Implemented
 
@@ -8,28 +8,34 @@
 - Default non-zero exit on failures; `--strict` also fails on warnings.
 - Jupyter kernelspec discovery using `jupyter kernelspec list --json`.
 - Read-only validation that each kernelspec has a resolvable executable.
+- Hardened cross-platform executable resolution: normalized path separators and explicit Windows `PATHEXT` (`.COM`, `.EXE`, `.BAT`, `.CMD`) checking across Python 3.10–3.13.
+- Symlink tolerance for canonical interpreter path resolution on Linux/Ubuntu.
 - Current/control interpreter probe and optional explicit `--server-python` probe.
 - Safe default for probing: separate Python kernel executables are not executed without `--probe-python`.
 - Python `ipykernel` check when a kernel is probed.
 - Server/control-vs-kernel environment drift messages with limitations explained.
 - Narrow check for presence of `jupyterlab_widgets` when the control environment contains JupyterLab and a probed kernel has `ipywidgets`.
 - Notebook metadata check for missing/unavailable kernels and changed display names.
-- Tests, packaging metadata, MIT license, contributor/security notes, and GitHub Actions CI.
+- Modernized GitHub Actions CI workflow using `actions/checkout@v7` and `actions/setup-python@v7` targeting Node.js 24 runners.
+- Tests, packaging metadata, MIT license, contributor/security notes, and multi-OS CI.
 
-## Validation completed in the build environment
+## Validation completed in the build and CI environments
 
 - `python -m unittest discover -s tests -v`: **52 tests passed** (including discovery, diagnostics, edge cases, malformed JSON, and CLI suites).
-- `python -m compileall -q src tests`: successful.
-- `kernelcontract --version`: successful.
+- `python -m pytest -q`: **52 passed**.
+- `python -m compileall -q src tests`: clean syntax compilation.
+- `kernelcontract --version`: verified.
 - `kernelcontract doctor` & `kernelcontract notebook <sample .ipynb> --json`: verified against fixture notebooks and clean test reports.
-- Wheel built successfully (`pip wheel . --no-deps -w dist`) and installed into a clean virtual environment (`.venv_test`).
-- Installed CLI `kernelcontract --help`, `doctor`, and `notebook` verified inside the isolated virtual environment.
+- Wheel built successfully (`pip wheel . --no-deps -w dist`) and installed into clean virtual environments.
+- Installed CLI `kernelcontract --help`, `doctor`, and `notebook` verified inside isolated virtual environments.
 - Windows execution verified: PATHEXT resolution without `.exe`, quoted executable paths, console output encoding safety, and subprocess decode safety.
+- Public GitHub repository live at `https://github.com/Ayushxsingh100/kernelcontract`.
+- Remote GitHub Actions CI verified: all 8 matrix jobs passed across Ubuntu and Windows on Python 3.10, 3.11, 3.12, and 3.13.
 
 ## Not yet done
 
-- No public GitHub repository has been created.
-- The package has **not** been published to PyPI.
+- Tag `v0.1.0a2` has **not** yet been created; `v0.1.0a1` remains the existing alpha tag.
+- The package has **not** been published to PyPI or TestPyPI.
 - The name remains provisional; registry availability is not trademark or legal clearance.
 - No external maintainers or Jupyter users have tested it yet.
 - macOS testing has not been performed in an actual macOS runner.

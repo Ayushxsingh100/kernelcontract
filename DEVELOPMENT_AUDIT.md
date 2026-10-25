@@ -1,8 +1,8 @@
-# KernelContract Development Audit — 0.1.0a1 Alpha
+# KernelContract Development Audit — 0.1.0a2 Candidate
 
 ## 1. Executive Summary
 
-An audit of KernelContract version `0.1.0a1` was conducted on Windows using Python 3.12.10.
+An audit and cross-platform verification of KernelContract version `0.1.0a2` (pre-release candidate) was conducted.
 KernelContract is an alpha diagnostic utility designed to perform read-only health checks on Jupyter kernelspecs, Python environments, and notebook metadata.
 
 The architectural foundation of KernelContract is clean, lightweight, and adheres to zero runtime external dependencies. However, several real defects, cross-platform edge case vulnerabilities, and test coverage gaps were discovered during static inspection, execution on Windows, and edge-case testing.
@@ -172,4 +172,25 @@ Coverage areas verified:
    - ASCII-only text report header avoids Windows CP1252 / pipe redirection encoding crashes.
    - Subprocess stdout/stderr uses `utf-8` decoding with replacement characters.
    - File paths with spaces and Windows backslashes are resolved cleanly.
+
+---
+
+## 9. Remote CI Validation and Candidate 0.1.0a2 Hardening
+
+Following the creation of the public repository (`https://github.com/Ayushxsingh100/kernelcontract`), remote GitHub Actions CI executed on Ubuntu and Windows across Python 3.10 through 3.13.
+
+### Defects Discovered and Fixed in 0.1.0a2:
+1. **Windows PATHEXT Extension Resolution on Python 3.10 & 3.11:**
+   - On Windows with Python < 3.12, `shutil.which` failed to resolve commands with mixed path separators (e.g. `$CUSTOM_BIN/python`).
+   - Fix: Normalized path separators via `os.path.normpath` and explicitly iterated Windows `PATHEXT` (`.COM`, `.EXE`, `.BAT`, `.CMD`) directly with `Path`, guaranteeing uniform resolution across all Python versions.
+2. **Linux Symlink Canonicalization in Test Assertions:**
+   - On Ubuntu GitHub-hosted runners, `sys.executable` was a symlink to versioned interpreter binaries.
+   - Fix: Updated `test_resolve_quoted_executable_with_spaces` to compare against `str(Path(sys.executable).resolve())` and assert filesystem equivalence via `os.path.samefile()`.
+3. **GitHub Actions Modernization:**
+   - Modernized workflow actions to `actions/checkout@v7` and `actions/setup-python@v7` to eliminate Node.js 20 deprecation warnings on current runners.
+
+### Tag Integrity:
+- The existing tag `v0.1.0a1` remains intact pointing to the initial release commit `0f32ae55ec4d3b5cd10b1b36da986d8ae07b55a4`.
+- Version `0.1.0a2` represents the next alpha pre-release candidate.
+
 

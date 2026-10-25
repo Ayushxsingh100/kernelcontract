@@ -4,7 +4,7 @@
 
 KernelContract inspects registered Jupyter kernelspecs, checks whether their configured executables resolve, probes Python kernel environments, and compares notebook kernel metadata with the kernels available to the current Jupyter CLI. It reports likely issues and safe next steps without modifying the machine.
 
-> **Alpha software (0.1.0a1).** This is an initial, deliberately narrow implementation. It does not diagnose every JupyterLab extension, certify exact widget-version compatibility, infer the interpreter of an already-running Jupyter server, or guarantee that a notebook will execute successfully. The project name is provisional and has not been trademark- or registry-cleared.
+> **Alpha software (0.1.0a2 pre-release candidate).** This is an initial, deliberately narrow implementation. It does not diagnose every JupyterLab extension, certify exact widget-version compatibility, infer the interpreter of an already-running Jupyter server, or guarantee that a notebook will execute successfully. The project name is provisional and has not been trademark- or registry-cleared.
 
 ## Quick start
 
@@ -110,6 +110,6 @@ This release is intentionally a diagnostic baseline, not an authoritative compat
 
 ## Status
 
-- Version: `0.1.0a1`
+- Version: `0.1.0a2` (pre-release candidate)
 - License: MIT
 - Stability: Alpha
