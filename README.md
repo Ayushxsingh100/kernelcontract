@@ -9,7 +9,7 @@ KernelContract performs local, read-only diagnostics on Jupyter kernelspecs, Pyt
 [![MIT License](https://img.shields.io/github/license/Ayushxsingh100/kernelcontract)](https://github.com/Ayushxsingh100/kernelcontract/blob/master/LICENSE)
 [![CI Status](https://github.com/Ayushxsingh100/kernelcontract/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Ayushxsingh100/kernelcontract/actions/workflows/ci.yml)
 
-> **Alpha Release (`0.1.0a4` candidate):** KernelContract is published on [PyPI](https://pypi.org/project/kernelcontract/) (current release: [0.1.0a3](https://pypi.org/project/kernelcontract/0.1.0a3/)) and tagged on [GitHub](https://github.com/Ayushxsingh100/kernelcontract/releases). This release candidate (`0.1.0a4`) synchronizes project documentation and metadata with PyPI. It performs strictly local, read-only checks and will never modify your packages, configuration files, or notebook contents.
+> **Alpha Release (`0.1.0a4`):** KernelContract is published on [PyPI](https://pypi.org/project/kernelcontract/) (see [version 0.1.0a4](https://pypi.org/project/kernelcontract/0.1.0a4/)) and tagged on [GitHub](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a4) as an early-stage diagnostic tool. It performs strictly local, read-only checks and will never modify your packages, configuration files, or notebook contents.
 
 ---
 
@@ -24,23 +24,23 @@ KernelContract performs local, read-only diagnostics on Jupyter kernelspecs, Pyt
 
 #### Primary: Install from PyPI
 
-Install the current published alpha release directly from [PyPI](https://pypi.org/project/kernelcontract/):
+Install the published alpha release directly from [PyPI](https://pypi.org/project/kernelcontract/):
 
 ```bash
-python -m pip install --pre kernelcontract==0.1.0a3
+python -m pip install --pre kernelcontract==0.1.0a4
 ```
 
-*(The `--pre` flag is required because alpha releases are pre-releases; `pip` requires `--pre` to allow installing alpha and pre-release packages).*
+*(The `--pre` flag is required because `0.1.0a4` is an alpha pre-release; `pip` requires `--pre` to allow installing alpha and pre-release packages).*
 
 #### Alternative: Install from tagged GitHub release (for developers)
 
 Developers or contributors who wish to install directly from the tagged release on GitHub can use:
 
 ```bash
-python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a3"
+python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a4"
 ```
 
-To install the latest development snapshot (`0.1.0a4` candidate) from the default `master` branch:
+To install the latest development snapshot from the default `master` branch:
 
 ```bash
 python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git"
@@ -188,11 +188,11 @@ Issues and feature requests are welcome at [GitHub Issues](https://github.com/Ay
 
 ## Status and metadata
 
-* **Release candidate:** `0.1.0a4` (Pre-release candidate)
-* **Current PyPI release:** [`0.1.0a3`](https://pypi.org/project/kernelcontract/0.1.0a3/)
+* **Published version:** `0.1.0a4` (Alpha release)
 * **PyPI project page:** [https://pypi.org/project/kernelcontract/](https://pypi.org/project/kernelcontract/)
-* **GitHub releases:** [https://github.com/Ayushxsingh100/kernelcontract/releases](https://github.com/Ayushxsingh100/kernelcontract/releases)
+* **PyPI version page (0.1.0a4):** [https://pypi.org/project/kernelcontract/0.1.0a4/](https://pypi.org/project/kernelcontract/0.1.0a4/)
+* **GitHub release:** [v0.1.0a4 Release](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a4)
 * **GitHub repository:** [https://github.com/Ayushxsingh100/kernelcontract](https://github.com/Ayushxsingh100/kernelcontract)
 * **License:** [MIT License](https://github.com/Ayushxsingh100/kernelcontract/blob/master/LICENSE)
 
-> **Note on PyPI metadata:** Package distributions published to PyPI are permanent and immutable. Version `0.1.0a3` on PyPI was built and published from release tag `v0.1.0a3`. Candidate `0.1.0a4` synchronizes this redesigned documentation so that subsequent publication will update the long description displayed on PyPI.
+> **Note on PyPI metadata:** Package distributions published to PyPI are permanent and immutable. Version `0.1.0a4` on PyPI was built and published from release tag `v0.1.0a4`.

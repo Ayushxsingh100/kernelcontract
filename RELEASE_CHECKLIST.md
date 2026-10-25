@@ -26,5 +26,6 @@ Before publishing or announcing this project:
 - [x] Verify `pip install --pre kernelcontract==0.1.0a3` in a clean environment after PyPI publication.
 - [x] Add documentation and changelog notes explaining known limitations, security implications, and the opt-in `--probe-python` behavior.
 - [x] Prepare release candidate `0.1.0a4` on branch `master` to synchronize redesigned README with PyPI description.
-- [ ] Create and push tag `v0.1.0a4` upon maintainer approval (do not create yet).
-- [ ] Publish `0.1.0a4` to PyPI and GitHub releases.
+- [x] Create and push tag `v0.1.0a4`.
+- [x] Publish `v0.1.0a4` release on GitHub and PyPI via GitHub Actions Trusted Publishing.
+- [x] Verify `pip install --pre kernelcontract==0.1.0a4` in a clean environment after PyPI publication.

@@ -1,4 +1,4 @@
-# Build status — 0.1.0a4 alpha (candidate)
+# Build status — 0.1.0a4 alpha (published)
 
 ## Implemented
 
@@ -34,13 +34,13 @@
 - Windows execution verified: PATHEXT resolution without `.exe`, quoted executable paths, console output encoding safety, and subprocess decode safety.
 - Public GitHub repository live at `https://github.com/Ayushxsingh100/kernelcontract`.
 - Remote GitHub Actions CI verified: all 8 matrix jobs passed across Ubuntu and Windows on Python 3.10, 3.11, 3.12, and 3.13.
-- Git installation verified: `pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a3"`.
-- PyPI publication verified: `python -m pip install --pre kernelcontract==0.1.0a3` successfully installs published package from PyPI.
+- Git installation verified: `pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a4"`.
+- PyPI publication target: `python -m pip install --pre kernelcontract==0.1.0a4`.
 
-## Candidate 0.1.0a4 status & known limitations
+## Release 0.1.0a4 status & known limitations
 
-- Version `0.1.0a4` is prepared as a candidate on branch `master` to synchronize the redesigned README with PyPI.
-- Current published release on PyPI and GitHub is `0.1.0a3`. Tag `v0.1.0a4` has not yet been created.
+- Tag `v0.1.0a4` published on GitHub as an alpha pre-release.
+- Package `0.1.0a4` published on PyPI via GitHub Actions Trusted Publishing.
 - The name remains provisional; registry availability is not trademark or legal clearance.
 - No external maintainers or Jupyter users have tested it yet.
 - macOS testing has not been performed in an actual macOS runner.

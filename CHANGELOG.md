@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0a4 — unreleased
+## 0.1.0a4 — 2026-10-25
 
 - Synchronized project documentation and release metadata with PyPI.
 - Updated README to a modern open-source developer-tool landing page featuring genuine badges, concrete problem scenarios, terminal demonstrations, and a two-column capability summary table.
