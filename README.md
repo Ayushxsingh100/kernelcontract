@@ -4,12 +4,12 @@
 
 KernelContract performs local, read-only diagnostics on Jupyter kernelspecs, Python executables, and notebook kernel metadata to identify configuration problems and environment drift before execution.
 
-[![PyPI Version](https://img.shields.io/pypi/v/kernelcontract?include_prereleases)](https://pypi.org/project/kernelcontract/)
+[![PyPI Version](https://img.shields.io/pypi/v/kernelcontract?include_prereleases)](https://pypi.org/project/kernelcontract/0.1.0a3/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/kernelcontract)](https://pypi.org/project/kernelcontract/)
-[![License](https://img.shields.io/github/license/Ayushxsingh100/kernelcontract)](LICENSE)
-[![CI Status](https://github.com/Ayushxsingh100/kernelcontract/actions/workflows/ci.yml/badge.svg)](https://github.com/Ayushxsingh100/kernelcontract/actions/workflows/ci.yml)
+[![MIT License](https://img.shields.io/github/license/Ayushxsingh100/kernelcontract)](https://github.com/Ayushxsingh100/kernelcontract/blob/master/LICENSE)
+[![CI Status](https://github.com/Ayushxsingh100/kernelcontract/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Ayushxsingh100/kernelcontract/actions/workflows/ci.yml)
 
-> **Alpha Software (0.1.0a3):** KernelContract is published on [PyPI](https://pypi.org/project/kernelcontract/) and [GitHub](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a3) as an early-stage diagnostic tool. It is strictly read-only and will never modify packages or rewrite configuration files.
+> **Alpha Release (`0.1.0a3`):** KernelContract is published on [PyPI](https://pypi.org/project/kernelcontract/) (see [version 0.1.0a3](https://pypi.org/project/kernelcontract/0.1.0a3/)) and tagged on [GitHub](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a3) as an early-stage diagnostic tool. It performs strictly local, read-only checks and will never modify your packages, configuration files, or notebook contents.
 
 ---
 
@@ -22,18 +22,28 @@ KernelContract performs local, read-only diagnostics on Jupyter kernelspecs, Pyt
 
 ### Installation
 
-Install the alpha release directly from [PyPI](https://pypi.org/project/kernelcontract/):
+#### Primary: Install from PyPI
+
+Install the published alpha release directly from [PyPI](https://pypi.org/project/kernelcontract/):
 
 ```bash
 python -m pip install --pre kernelcontract==0.1.0a3
 ```
 
-*(The `--pre` flag permits installation of the alpha pre-release.)*
+*(The `--pre` flag is required because `0.1.0a3` is an alpha pre-release; `pip` requires `--pre` to allow installing alpha and pre-release packages).*
 
-Or install the tagged release from GitHub:
+#### Alternative: Install from tagged GitHub release (for developers)
+
+Developers or contributors who wish to install directly from the tagged release on GitHub can use:
 
 ```bash
 python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a3"
+```
+
+To install the latest development snapshot from the default `master` branch:
+
+```bash
+python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git"
 ```
 
 ---
@@ -178,10 +188,11 @@ Issues and feature requests are welcome at [GitHub Issues](https://github.com/Ay
 
 ## Status and metadata
 
-* **Version:** `0.1.0a3`
-* **Package index:** [https://pypi.org/project/kernelcontract/](https://pypi.org/project/kernelcontract/)
-* **Repository:** [https://github.com/Ayushxsingh100/kernelcontract](https://github.com/Ayushxsingh100/kernelcontract)
-* **Release notes:** [v0.1.0a3 Release](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a3)
-* **License:** [MIT](LICENSE)
+* **Published version:** `0.1.0a3` (Alpha release)
+* **PyPI project page:** [https://pypi.org/project/kernelcontract/](https://pypi.org/project/kernelcontract/)
+* **PyPI version page (0.1.0a3):** [https://pypi.org/project/kernelcontract/0.1.0a3/](https://pypi.org/project/kernelcontract/0.1.0a3/)
+* **GitHub release:** [v0.1.0a3 Release](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a3)
+* **GitHub repository:** [https://github.com/Ayushxsingh100/kernelcontract](https://github.com/Ayushxsingh100/kernelcontract)
+* **License:** [MIT License](https://github.com/Ayushxsingh100/kernelcontract/blob/master/LICENSE)
 
-> **Note on PyPI metadata:** The `0.1.0a3` package on PyPI was published directly from release tag `v0.1.0a3`. Because published PyPI packages are immutable, updated landing page content on the default `master` branch will be reflected on PyPI in subsequent release publications.
+> **Note on PyPI metadata:** Package distributions published to PyPI are permanent and immutable. Version `0.1.0a3` on PyPI was built and published from release tag `v0.1.0a3`. Updated landing page content and documentation improvements on the default `master` branch will automatically be included in the project description of subsequent published package versions.

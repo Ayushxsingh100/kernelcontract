@@ -1,4 +1,4 @@
-# Build status — 0.1.0a3 alpha (candidate)
+# Build status — 0.1.0a3 alpha (published)
 
 ## Implemented
 
@@ -33,15 +33,13 @@
 - Windows execution verified: PATHEXT resolution without `.exe`, quoted executable paths, console output encoding safety, and subprocess decode safety.
 - Public GitHub repository live at `https://github.com/Ayushxsingh100/kernelcontract`.
 - Remote GitHub Actions CI verified: all 8 matrix jobs passed across Ubuntu and Windows on Python 3.10, 3.11, 3.12, and 3.13.
-- Git installation verified: `pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a2"`.
-- PyPI endpoints audited (`/pypi/kernelcontract/json` returned 404).
+- Git installation verified: `pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a3"`.
+- PyPI publication verified: `python -m pip install --pre kernelcontract==0.1.0a3` successfully installs published package from PyPI.
 
-## Not yet done (manual account & publication blockers)
+## Known limitations and future considerations
 
-- Tag `v0.1.0a2` is published on GitHub as an alpha pre-release.
-- Candidate `0.1.0a3` is under development; tag `v0.1.0a3` will only be created and pushed after release candidate verification and manual PyPI configuration.
-- Manual PyPI Trusted Publisher configuration: Maintainer must configure a Pending Publisher in PyPI account settings pointing to repo `Ayushxsingh100/kernelcontract`, workflow `publish-to-pypi.yml`, and environment `pypi`.
-- The package has **not** been published to PyPI or TestPyPI.
+- Tag `v0.1.0a3` is published on GitHub as an alpha pre-release.
+- The package is published on PyPI as `0.1.0a3` via GitHub Actions Trusted Publishing.
 - The name remains provisional; registry availability is not trademark or legal clearance.
 - No external maintainers or Jupyter users have tested it yet.
 - macOS testing has not been performed in an actual macOS runner.

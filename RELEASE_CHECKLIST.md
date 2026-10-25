@@ -22,6 +22,6 @@ Before publishing or announcing this project:
   - Environment name: `pypi`
 - [x] Configure GitHub environment `pypi` via GitHub REST API: required reviewer `Ayushxsingh100` (ID: 192797874), self-review permitted (`prevent_self_review: false`), administrator bypass disabled (`can_admins_bypass: false`), and deployment restricted to tag pattern `v*`.
 - [x] Publish candidate `0.1.0a2` as a clearly marked GitHub pre-release (https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2).
-- [ ] Prepare candidate `0.1.0a3` for PyPI publication (do not create or push tag `v0.1.0a3` until manual setup is complete).
-- [ ] Verify `pip install kernelcontract` in a clean environment after PyPI publication.
+- [x] Prepare and publish release `0.1.0a3` to PyPI via GitHub Actions Trusted Publishing and tag `v0.1.0a3` GitHub pre-release (https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a3).
+- [x] Verify `pip install --pre kernelcontract==0.1.0a3` in a clean environment after PyPI publication.
 - [x] Add documentation and changelog notes explaining known limitations, security implications, and the opt-in `--probe-python` behavior.
