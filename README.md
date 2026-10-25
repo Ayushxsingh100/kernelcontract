@@ -17,10 +17,10 @@ KernelContract inspects registered Jupyter kernelspecs, checks whether their con
 
 ### End-user installation (pre-release)
 
-While PyPI publication remains pending, install the tagged alpha pre-release directly from GitHub using `pip`:
+Install the tagged alpha pre-release directly from GitHub using `pip`:
 
 ```bash
-python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a2"
+python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a3"
 ```
 
 Or install the latest development snapshot from the default `master` branch:

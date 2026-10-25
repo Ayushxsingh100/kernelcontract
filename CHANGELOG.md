@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0a3 — unreleased
+## 0.1.0a3 — 2026-10-25
 
 - Prepared PyPI Trusted Publishing GitHub Actions workflow (`.github/workflows/publish-to-pypi.yml`) using OIDC authentication, release triggers, and environment protection.
 - Resolved repository URL placeholders in documentation and established verified Git-based installation instructions.

@@ -14,11 +14,12 @@ Before publishing or announcing this project:
 - [x] Build sdist and wheel distributions (`python -m build`), then validate with `python -m twine check --strict dist/*`.
 - [x] Install the wheel into a clean virtual environment and verify `--version`, `--help`, `doctor`, and notebook checks.
 - [x] Prepare dedicated GitHub Actions Trusted Publishing workflow (`.github/workflows/publish-to-pypi.yml`) with OIDC tokens, release triggers, and environment protection.
-- [ ] Manual PyPI Account Configuration: Maintainer must register/log in to PyPI (with 2FA) and add a "Pending Publisher" under Account Settings -> Publishing:
+- [x] PyPI Pending Publisher: Configured by repository owner under PyPI Account Settings -> Publishing:
   - PyPI Project Name: `kernelcontract`
   - Owner: `Ayushxsingh100`
   - Repository name: `kernelcontract`
   - Workflow name: `publish-to-pypi.yml`
+  - Environment name: `pypi`
 - [x] Configure GitHub environment `pypi` via GitHub REST API: required reviewer `Ayushxsingh100` (ID: 192797874), self-review permitted (`prevent_self_review: false`), administrator bypass disabled (`can_admins_bypass: false`), and deployment restricted to tag pattern `v*`.
 - [x] Publish candidate `0.1.0a2` as a clearly marked GitHub pre-release (https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a2).
 - [ ] Prepare candidate `0.1.0a3` for PyPI publication (do not create or push tag `v0.1.0a3` until manual setup is complete).
