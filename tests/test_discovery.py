@@ -56,7 +56,8 @@ class TestDiscovery(unittest.TestCase):
         quoted = f'"{sys.executable}"'
         resolved = resolve_executable(quoted)
         self.assertIsNotNone(resolved)
-        self.assertEqual(os.path.normcase(resolved), os.path.normcase(sys.executable))
+        self.assertEqual(resolved, str(Path(sys.executable).resolve()))
+        self.assertTrue(os.path.samefile(resolved, sys.executable))
 
     @patch("kernelcontract.discovery.Path.is_file", return_value=False)
     @patch("kernelcontract.discovery.shutil.which")

@@ -61,10 +61,24 @@ def resolve_executable(argv0: str, spec_env: Optional[Dict[str, Any]] = None) ->
                 return str(candidate.resolve())
         except OSError:
             pass
-        # On Windows, path components may omit .exe; shutil.which resolves PATHEXT
-        which_path = shutil.which(expanded)
-        if which_path:
-            return str(Path(which_path).resolve())
+        # On Windows, path components may omit .exe; check PATHEXT with normalized slashes
+        if os.name == "nt":
+            norm_expanded = os.path.normpath(expanded)
+            pathext = [ext for ext in os.environ.get("PATHEXT", ".COM;.EXE;.BAT;.CMD").split(";") if ext]
+            for ext in pathext:
+                target = Path(norm_expanded + ext if not norm_expanded.lower().endswith(ext.lower()) else norm_expanded)
+                try:
+                    if target.is_file():
+                        return str(target.resolve())
+                except OSError:
+                    pass
+            which_path = shutil.which(norm_expanded)
+            if which_path:
+                return str(Path(which_path).resolve())
+        else:
+            which_path = shutil.which(expanded)
+            if which_path:
+                return str(Path(which_path).resolve())
         return None
     resolved = shutil.which(expanded, path=env.get("PATH"))
     return str(Path(resolved).resolve()) if resolved else None
