@@ -4,12 +4,12 @@
 
 KernelContract performs local, read-only diagnostics on Jupyter kernelspecs, Python executables, and notebook kernel metadata to identify configuration problems and environment drift before execution.
 
-[![PyPI Version](https://img.shields.io/pypi/v/kernelcontract?include_prereleases)](https://pypi.org/project/kernelcontract/0.1.0a3/)
+[![PyPI Version](https://img.shields.io/pypi/v/kernelcontract?include_prereleases)](https://pypi.org/project/kernelcontract/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/kernelcontract)](https://pypi.org/project/kernelcontract/)
 [![MIT License](https://img.shields.io/github/license/Ayushxsingh100/kernelcontract)](https://github.com/Ayushxsingh100/kernelcontract/blob/master/LICENSE)
 [![CI Status](https://github.com/Ayushxsingh100/kernelcontract/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Ayushxsingh100/kernelcontract/actions/workflows/ci.yml)
 
-> **Alpha Release (`0.1.0a3`):** KernelContract is published on [PyPI](https://pypi.org/project/kernelcontract/) (see [version 0.1.0a3](https://pypi.org/project/kernelcontract/0.1.0a3/)) and tagged on [GitHub](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a3) as an early-stage diagnostic tool. It performs strictly local, read-only checks and will never modify your packages, configuration files, or notebook contents.
+> **Alpha Release (`0.1.0a4` candidate):** KernelContract is published on [PyPI](https://pypi.org/project/kernelcontract/) (current release: [0.1.0a3](https://pypi.org/project/kernelcontract/0.1.0a3/)) and tagged on [GitHub](https://github.com/Ayushxsingh100/kernelcontract/releases). This release candidate (`0.1.0a4`) synchronizes project documentation and metadata with PyPI. It performs strictly local, read-only checks and will never modify your packages, configuration files, or notebook contents.
 
 ---
 
@@ -24,13 +24,13 @@ KernelContract performs local, read-only diagnostics on Jupyter kernelspecs, Pyt
 
 #### Primary: Install from PyPI
 
-Install the published alpha release directly from [PyPI](https://pypi.org/project/kernelcontract/):
+Install the current published alpha release directly from [PyPI](https://pypi.org/project/kernelcontract/):
 
 ```bash
 python -m pip install --pre kernelcontract==0.1.0a3
 ```
 
-*(The `--pre` flag is required because `0.1.0a3` is an alpha pre-release; `pip` requires `--pre` to allow installing alpha and pre-release packages).*
+*(The `--pre` flag is required because alpha releases are pre-releases; `pip` requires `--pre` to allow installing alpha and pre-release packages).*
 
 #### Alternative: Install from tagged GitHub release (for developers)
 
@@ -40,7 +40,7 @@ Developers or contributors who wish to install directly from the tagged release 
 python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a3"
 ```
 
-To install the latest development snapshot from the default `master` branch:
+To install the latest development snapshot (`0.1.0a4` candidate) from the default `master` branch:
 
 ```bash
 python -m pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git"
@@ -71,7 +71,7 @@ Inspect all discovered kernelspecs, check executable paths, and verify control i
 
 ```console
 $ kernelcontract doctor
-KernelContract 0.1.0a3 - doctor
+KernelContract 0.1.0a4 - doctor
 ============================================
 PASS  Current Python (control environment)
       Python 3.12.10 is executable.
@@ -96,7 +96,7 @@ Check whether a notebook file's declared kernel exists and matches registered ke
 
 ```console
 $ kernelcontract notebook analysis.ipynb
-KernelContract 0.1.0a3 - notebook
+KernelContract 0.1.0a4 - notebook
 ============================================
 PASS  Current Python (control environment)
       Python 3.12.10 is executable.
@@ -188,11 +188,11 @@ Issues and feature requests are welcome at [GitHub Issues](https://github.com/Ay
 
 ## Status and metadata
 
-* **Published version:** `0.1.0a3` (Alpha release)
+* **Release candidate:** `0.1.0a4` (Pre-release candidate)
+* **Current PyPI release:** [`0.1.0a3`](https://pypi.org/project/kernelcontract/0.1.0a3/)
 * **PyPI project page:** [https://pypi.org/project/kernelcontract/](https://pypi.org/project/kernelcontract/)
-* **PyPI version page (0.1.0a3):** [https://pypi.org/project/kernelcontract/0.1.0a3/](https://pypi.org/project/kernelcontract/0.1.0a3/)
-* **GitHub release:** [v0.1.0a3 Release](https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a3)
+* **GitHub releases:** [https://github.com/Ayushxsingh100/kernelcontract/releases](https://github.com/Ayushxsingh100/kernelcontract/releases)
 * **GitHub repository:** [https://github.com/Ayushxsingh100/kernelcontract](https://github.com/Ayushxsingh100/kernelcontract)
 * **License:** [MIT License](https://github.com/Ayushxsingh100/kernelcontract/blob/master/LICENSE)
 
-> **Note on PyPI metadata:** Package distributions published to PyPI are permanent and immutable. Version `0.1.0a3` on PyPI was built and published from release tag `v0.1.0a3`. Updated landing page content and documentation improvements on the default `master` branch will automatically be included in the project description of subsequent published package versions.
+> **Note on PyPI metadata:** Package distributions published to PyPI are permanent and immutable. Version `0.1.0a3` on PyPI was built and published from release tag `v0.1.0a3`. Candidate `0.1.0a4` synchronizes this redesigned documentation so that subsequent publication will update the long description displayed on PyPI.

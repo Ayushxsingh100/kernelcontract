@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0a4 — unreleased
+
+- Synchronized project documentation and release metadata with PyPI.
+- Updated README to a modern open-source developer-tool landing page featuring genuine badges, concrete problem scenarios, terminal demonstrations, and a two-column capability summary table.
+- Clarified local execution guarantees, zero-telemetry policy, and security boundaries for `--probe-python`.
+- Verified and documented primary PyPI installation with `--pre` flag and alternative Git installation.
+- Release candidate strictly updates documentation and packaging metadata; no software behavior or runtime changes are introduced.
+
 ## 0.1.0a3 — 2026-10-25
 
 - Prepared PyPI Trusted Publishing GitHub Actions workflow (`.github/workflows/publish-to-pypi.yml`) using OIDC authentication, release triggers, and environment protection.

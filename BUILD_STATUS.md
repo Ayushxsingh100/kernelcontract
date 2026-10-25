@@ -1,4 +1,4 @@
-# Build status — 0.1.0a3 alpha (published)
+# Build status — 0.1.0a4 alpha (candidate)
 
 ## Implemented
 
@@ -19,6 +19,7 @@
 - Notebook metadata check for missing/unavailable kernels and changed display names.
 - Modernized GitHub Actions CI workflow using `actions/checkout@v7` and `actions/setup-python@v7` targeting Node.js 24 runners.
 - Dedicated GitHub Actions PyPI Trusted Publishing workflow (`.github/workflows/publish-to-pypi.yml`) using OIDC authentication, release triggers, and environment protection.
+- Redesigned README developer-tool landing page with verified badges, problem scenarios, terminal demonstrations, and capability summary table.
 - Tests, packaging metadata, MIT license, contributor/security notes, and multi-OS CI.
 
 ## Validation completed in the build and CI environments
@@ -26,7 +27,7 @@
 - `python -m unittest discover -s tests -v`: **59 tests passed** (including discovery, diagnostics, edge cases, malformed JSON, and CLI suites).
 - `python -m pytest -q`: **59 passed**.
 - `python -m compileall -q src tests`: clean syntax compilation.
-- `kernelcontract --version`: verified (`0.1.0a3`).
+- `kernelcontract --version`: verified (`0.1.0a4`).
 - `kernelcontract doctor` & `kernelcontract notebook <sample .ipynb> --json`: verified against fixture notebooks and clean test reports.
 - Sdist and wheel built successfully (`python -m build`) and validated with `python -m twine check --strict dist/*`.
 - Wheel installed into clean virtual environment; CLI `--help`, `doctor`, and `notebook` verified inside isolated virtual environments.
@@ -36,10 +37,10 @@
 - Git installation verified: `pip install "git+https://github.com/Ayushxsingh100/kernelcontract.git@v0.1.0a3"`.
 - PyPI publication verified: `python -m pip install --pre kernelcontract==0.1.0a3` successfully installs published package from PyPI.
 
-## Known limitations and future considerations
+## Candidate 0.1.0a4 status & known limitations
 
-- Tag `v0.1.0a3` is published on GitHub as an alpha pre-release.
-- The package is published on PyPI as `0.1.0a3` via GitHub Actions Trusted Publishing.
+- Version `0.1.0a4` is prepared as a candidate on branch `master` to synchronize the redesigned README with PyPI.
+- Current published release on PyPI and GitHub is `0.1.0a3`. Tag `v0.1.0a4` has not yet been created.
 - The name remains provisional; registry availability is not trademark or legal clearance.
 - No external maintainers or Jupyter users have tested it yet.
 - macOS testing has not been performed in an actual macOS runner.

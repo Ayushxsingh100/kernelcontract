@@ -25,3 +25,6 @@ Before publishing or announcing this project:
 - [x] Prepare and publish release `0.1.0a3` to PyPI via GitHub Actions Trusted Publishing and tag `v0.1.0a3` GitHub pre-release (https://github.com/Ayushxsingh100/kernelcontract/releases/tag/v0.1.0a3).
 - [x] Verify `pip install --pre kernelcontract==0.1.0a3` in a clean environment after PyPI publication.
 - [x] Add documentation and changelog notes explaining known limitations, security implications, and the opt-in `--probe-python` behavior.
+- [x] Prepare release candidate `0.1.0a4` on branch `master` to synchronize redesigned README with PyPI description.
+- [ ] Create and push tag `v0.1.0a4` upon maintainer approval (do not create yet).
+- [ ] Publish `0.1.0a4` to PyPI and GitHub releases.
