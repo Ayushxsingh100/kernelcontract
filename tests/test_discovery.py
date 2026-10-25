@@ -98,6 +98,68 @@ class TestDiscovery(unittest.TestCase):
 
     @patch("kernelcontract.discovery.shutil.which", return_value="/fake/jupyter")
     @patch("kernelcontract.discovery.subprocess.run")
+    def test_discover_root_array(self, run_mock, _which_mock):
+        run_mock.return_value = Mock(returncode=0, stdout="[]", stderr="")
+        kernels, error = discover_kernelspecs()
+        self.assertEqual(kernels, {})
+        self.assertIn("unexpected JSON root structure", error)
+        self.assertIn("list", error)
+
+    @patch("kernelcontract.discovery.shutil.which", return_value="/fake/jupyter")
+    @patch("kernelcontract.discovery.subprocess.run")
+    def test_discover_root_null(self, run_mock, _which_mock):
+        run_mock.return_value = Mock(returncode=0, stdout="null", stderr="")
+        kernels, error = discover_kernelspecs()
+        self.assertEqual(kernels, {})
+        self.assertIn("unexpected JSON root structure", error)
+        self.assertIn("NoneType", error)
+
+    @patch("kernelcontract.discovery.shutil.which", return_value="/fake/jupyter")
+    @patch("kernelcontract.discovery.subprocess.run")
+    def test_discover_root_string(self, run_mock, _which_mock):
+        run_mock.return_value = Mock(returncode=0, stdout='"jupyter-kernels"', stderr="")
+        kernels, error = discover_kernelspecs()
+        self.assertEqual(kernels, {})
+        self.assertIn("unexpected JSON root structure", error)
+        self.assertIn("str", error)
+
+    @patch("kernelcontract.discovery.shutil.which", return_value="/fake/jupyter")
+    @patch("kernelcontract.discovery.subprocess.run")
+    def test_discover_root_number(self, run_mock, _which_mock):
+        run_mock.return_value = Mock(returncode=0, stdout="42", stderr="")
+        kernels, error = discover_kernelspecs()
+        self.assertEqual(kernels, {})
+        self.assertIn("unexpected JSON root structure", error)
+        self.assertIn("int", error)
+
+    @patch("kernelcontract.discovery.shutil.which", return_value="/fake/jupyter")
+    @patch("kernelcontract.discovery.subprocess.run")
+    def test_discover_missing_kernelspecs_field(self, run_mock, _which_mock):
+        run_mock.return_value = Mock(returncode=0, stdout='{"other_key": "val"}', stderr="")
+        kernels, error = discover_kernelspecs()
+        self.assertEqual(kernels, {})
+        self.assertIn("missing the required 'kernelspecs' field", error)
+
+    @patch("kernelcontract.discovery.shutil.which", return_value="/fake/jupyter")
+    @patch("kernelcontract.discovery.subprocess.run")
+    def test_discover_kernelspecs_field_wrong_type(self, run_mock, _which_mock):
+        run_mock.return_value = Mock(returncode=0, stdout='{"kernelspecs": ["not", "a", "dict"]}', stderr="")
+        kernels, error = discover_kernelspecs()
+        self.assertEqual(kernels, {})
+        self.assertIn("did not contain a 'kernelspecs' object", error)
+        self.assertIn("list", error)
+
+    @patch("kernelcontract.discovery.shutil.which", return_value="/fake/jupyter")
+    @patch("kernelcontract.discovery.subprocess.run")
+    def test_discover_kernelspecs_field_null(self, run_mock, _which_mock):
+        run_mock.return_value = Mock(returncode=0, stdout='{"kernelspecs": null}', stderr="")
+        kernels, error = discover_kernelspecs()
+        self.assertEqual(kernels, {})
+        self.assertIn("did not contain a 'kernelspecs' object", error)
+        self.assertIn("NoneType", error)
+
+    @patch("kernelcontract.discovery.shutil.which", return_value="/fake/jupyter")
+    @patch("kernelcontract.discovery.subprocess.run")
     def test_discover_json_with_surrounding_warnings(self, run_mock, _which_mock):
         payload = {"kernelspecs": {"python3": {"resource_dir": "/tmp/p3", "spec": {"argv": [sys.executable]}}}}
         stdout = f"[IPKernelApp] WARNING | config warning\n{json.dumps(payload)}\n[Extra] Info"

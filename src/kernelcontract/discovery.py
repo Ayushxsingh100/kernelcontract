@@ -126,9 +126,19 @@ def discover_kernelspecs(timeout: float = 15.0) -> Tuple[Dict[str, Dict[str, Any
         else:
             return {}, "Jupyter returned invalid JSON for kernelspecs: {}".format(exc)
 
-    raw_specs = payload.get("kernelspecs")
+    if not isinstance(payload, dict):
+        return {}, "Jupyter returned an unexpected JSON root structure: expected an object, got {}.".format(
+            type(payload).__name__
+        )
+
+    if "kernelspecs" not in payload:
+        return {}, "Jupyter's kernelspec JSON is missing the required 'kernelspecs' field."
+
+    raw_specs = payload["kernelspecs"]
     if not isinstance(raw_specs, dict):
-        return {}, "Jupyter's kernelspec JSON did not contain a 'kernelspecs' object."
+        return {}, "Jupyter's kernelspec JSON did not contain a 'kernelspecs' object (got {}).".format(
+            type(raw_specs).__name__
+        )
 
     result: Dict[str, Dict[str, Any]] = {}
     for name, entry in raw_specs.items():
